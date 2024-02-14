@@ -70,10 +70,18 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
                 when (menuItem.itemId) {
                     R.id.signin -> {
-                        findNavController(R.id.nav_host_fragment)
-                           .navigate(R.id.action_feedFragment_to_authUserFragment)
-                        // TODO: just hardcode it, implementation must be in homework
-                        //AppAuth.getInstance().setAuth(5, "x-token")
+                        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, destination, _ ->
+                            when (destination.id) {
+                                R.id.feedFragment -> {
+                                    findNavController(R.id.nav_host_fragment)
+                                    .navigate(R.id.action_feedFragment_to_authUserFragment)
+                                }
+                                R.id.newPostFragment -> {
+                                    findNavController(R.id.nav_host_fragment)
+                                        .navigate(R.id.action_newPostFragment_to_authUserFragment)
+                                }
+                            }
+                        }
                         true
                     }
 

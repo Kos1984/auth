@@ -7,6 +7,6 @@ class NMediaApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         AppAuth.initApp(this)
-        AppAuth.getInstance().setAuth(5, "x-token")
+        //AppAuth.getInstance().setAuth(5, "x-token")
     }
 }
